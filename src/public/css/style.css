@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #1f1e1e;
+    padding: 30px 0px 30px;
+
+}
+    
+.btn-panel{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+    background-color: #3a3c54;
+    padding: 25px;
+    border-radius: 5px;
+}
+
+.title{
+    color: rgb(82, 82, 82);
+    font-size: 35px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.btn-clientes{
+    background-color: rgb(219, 219, 238);
+    color: rgb(82, 82, 82);
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+.client-list{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+    background-color: rgb(176, 176, 176);
+    padding: 30px;
+    gap: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    border: 2px solid rgb(136, 136, 136);
+    border-radius: 5px;
+
+}
+
+.btn-send{
+    background-color: rgb(14, 128, 31);
+    font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 5px;
+    padding: 7px;
+    margin: 3px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
+
+}
+
+.client-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+}
