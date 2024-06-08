@@ -88,7 +88,7 @@
 /* Email controller */
 /* --------------------------------------------------------------------------------------------------------------- */
 
-body {
+.body-emails{
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -105,54 +105,70 @@ body {
     padding: 30px 0px 30px;
 }
 
-h1 {
+.title-emails {
     text-align: center;
     margin-bottom: 20px;
 }
 
-table {
+.buttons-create-emails{ 
+    display: flex;
+    justify-content: space-between;
     width: 100%;
+    max-width: 800px;
+    margin: 20px;
+    background-color: #3a3c54;
+    padding: 25px;
+    border-radius: 5px;
+}
+
+.table-emails {
+    width: 60%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-th, td {
+.table-emails th, td {
     padding: 12px;
-    border: 1px solid #ddd;
-    text-align: left;
+    border: 1px solid #a3a3a3;
+    text-align: center;
 }
 
-th {
+.table-emails th {
     background-color: #f4f4f4;
 }
 
-button {
+.btn-upload-emails {
+    background-color: #2a2c2e;
+    color: white;
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+}
+.btn-create-emails, .btn-edit-emails {
+    background-color: #007bff;
+    color: white;
     padding: 8px 12px;
     margin: 0 5px;
     border: none;
     cursor: pointer;
 }
 
-button.btn-primary {
-    background-color: #007bff;
-    color: white;
-}
-
-button.btn-danger {
+.btn-delete-emails {
     background-color: #dc3545;
     color: white;
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
 }
 
-button:hover {
-    opacity: 0.9;
+.btn-create-emails:hover, .btn-edit-emails:hover, 
+.btn-upload-emails:hover, .btn-delete-emails:hover {
+    opacity: 0.8;
 }
 
-button.btn-secondary {
-    background-color: #6c757d;
-    color: white;
-}
-
-.modal {
+.modal-emails {
     display: none;
     position: fixed;
     z-index: 1;
@@ -162,10 +178,10 @@ button.btn-secondary {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 60px;
+    padding-top: 20px;
 }
 
-.modal-content {
+.modal-content-emails {
     background-color: #fefefe;
     margin: 5% auto;
     padding: 20px;
@@ -173,16 +189,96 @@ button.btn-secondary {
     width: 80%;
 }
 
-.close {
+.close-email {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close-email:hover,
+.close-email:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
+
+.modal-title{
+    padding: 10px;
+    font-size: 18px;
+}
+
+.email-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+
+.form-email-first-fields{
+    display: flex;
+    gap: 40px;
+    justify-content: start;
+}
+
+.form-label-email{
+    font-size: 18px;
+    font-weight: 500;
+    color: #212121;
+    margin: 20px 60px 0 0;
+}
+
+.form-input-email{
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #848484;
+    width: 100%;
+    max-width: 350px;
+}
+
+.select-email{
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #848484;
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 15px;
+}
+
+.image-preview-email{
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 15px;
+    max-height: 80px;
+}
+
+.btn-save-emails{
+    background-color: #007bff;
+    color: white;
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    max-width: 150px;
+}
+.form-label-email-upload{
+    font-size: 18px;
+    font-weight: 500;
+    color: #212121;
+    margin: 20px 60px 0 0;
+}
+
+.btn-upload-emails-submit{
+    margin-top: 20px;
+    background-color: #2a2c2e;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    max-width: 150px;
+    border-radius: 8px;
+}
+

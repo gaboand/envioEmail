@@ -35,7 +35,7 @@ function closeEmailModal() {
 document.getElementById('emailForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const formData = new FormData(this);
-    formData.set('body', CKEDITOR.instances.emailBody.getData()); // Añadir datos de CKEditor
+    formData.set('body', CKEDITOR.instances.emailBody.getData());
     const url = isEditing ? `/emails/edit/${currentEmailId}` : '/emails';
     const method = isEditing ? 'POST' : 'PUT';
     
@@ -135,24 +135,6 @@ document.getElementById('imageUploadForm').addEventListener('submit', function(e
             alert('Imagen subida exitosamente');
             closeUploadImageModal();
             loadExistingImages();
-        } else if (response.status === 409) {
-            response.json().then(data => {
-                if (confirm(`El archivo ${data.filename} ya existe. ¿Desea reemplazarlo?`)) {
-                    formData.append('overwrite', true);
-                    fetch('/images/upload', {
-                        method: 'POST',
-                        body: formData
-                    }).then(resp => {
-                        if (resp.ok) {
-                            alert('Imagen sobrescrita exitosamente');
-                            closeUploadImageModal();
-                            loadExistingImages();
-                        } else {
-                            alert('Error al sobrescribir la imagen.');
-                        }
-                    });
-                }
-            });
         } else {
             throw new Error('Error al subir la imagen.');
         }

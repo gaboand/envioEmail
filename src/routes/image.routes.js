@@ -8,10 +8,18 @@ const router = express.Router();
 
 // Ruta para cargar una imagen
 router.post('/upload', upload.single('imageFile'), (req, res) => {
-    const imgPath = path.join(publicPath, 'img', req.file.filename);
-    res.status(201).json({
-        uploaded: true,
-        url: `/img/${req.file.filename}`
+    const imgPath = path.join(publicPath, 'img', req.file.originalname);
+    
+    // Sobrescribir el archivo si ya existe
+    fs.rename(req.file.path, imgPath, (err) => {
+        if (err) {
+            console.error('Error al sobrescribir la imagen:', err);
+            return res.status(500).json({ uploaded: false, error: 'Error al sobrescribir la imagen' });
+        }
+        res.status(201).json({
+            uploaded: true,
+            url: `/img/${req.file.originalname}`
+        });
     });
 });
 

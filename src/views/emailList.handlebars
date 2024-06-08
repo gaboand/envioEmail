@@ -7,16 +7,18 @@
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 </head>
-<body>
+<body class ="body-emails">
     <div class="email-container">
-        <h1>Administrar Emails</h1>
-        <button class="btn btn-primary" onclick="openCreateModal()">Crear Nuevo Email</button>
-        <button class="btn btn-secondary" onclick="openUploadImageModal()">Subir Nueva Imagen</button>
-        <table>
+        <h1 class="title-emails">Administrador de Emails</h1>
+            <div class="buttons-create-emails">
+            <button class="btn-upload-emails" onclick="openUploadImageModal()">Subir Nueva Imagen</button>
+            <button class="btn-create-emails" onclick="openCreateModal()">Crear Nuevo Tipo de Email</button>
+            </div>
+            <table class="table-emails">
             <thead>
                 <tr>
-                    <th>Tipo</th>
-                    <th>Acciones</th>
+                    <th>Tipos de Email</th>
+                    <th>Editar / Borrar</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,8 +26,8 @@
                 <tr>
                     <td>{{this.type}}</td>
                     <td>
-                        <button class="btn btn-primary" onclick="openEditModal('{{this._id}}')">Editar</button>
-                        <button class="btn btn-danger" onclick="openDeleteModal('{{this._id}}')">Borrar</button>
+                        <button class="btn-edit-emails" onclick="openEditModal('{{this._id}}')">Editar</button>
+                        <button class="btn-delete-emails" onclick="openDeleteModal('{{this._id}}')">Borrar</button>
                     </td>
                 </tr>
                 {{/each}}
@@ -34,55 +36,57 @@
     </div>
 
     <!-- Modal para Crear/Editar Email -->
-    <div id="emailModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeEmailModal()">&times;</span>
-            <h5 id="modalTitle">Crear Email</h5>
-            <form id="emailForm">
-                <div>
-                    <label for="emailType">Tipo</label>
-                    <input type="text" id="emailType" name="type" required>
+    <div id="emailModal" class="modal-emails">
+        <div class="modal-content-emails">
+            <span class="close-email" onclick="closeEmailModal()">&times;</span>
+            <h5 class="modal-title" id="modalTitle">Crear Email</h5>
+            <form class="email-form" id="emailForm">
+                <div class="form-email-first-fields">
+                    <div>
+                        <label class="form-label-email" for="emailType">Tipo</label>
+                        <input class="form-input-email" type="text" id="emailType" name="type" required>
+                    </div>
+                    <div>
+                        <label class="form-label-email" for="emailSubject">Asunto</label>
+                        <input class="form-input-email" type="text" id="emailSubject" name="subject" required>
+                    </div>
                 </div>
                 <div>
-                    <label for="emailSubject">Asunto</label>
-                    <input type="text" id="emailSubject" name="subject" required>
-                </div>
-                <div>
-                    <label for="emailBody">Cuerpo del Email</label>
+                    <label class="form-label-email" for="emailBody">Cuerpo del Email</label>
                     <textarea id="emailBody" name="body" rows="10" required></textarea>
                 </div>
                 <div>
-                    <label for="existingImages">Seleccionar Imagen Existente (opcional)</label>
-                    <select id="existingImages" name="existingImage">
+                    <label class="form-label-email" for="existingImages">Seleccionar Imagen Existente</label>
+                    <select class="select-email" id="existingImages" name="existingImage">
                         <option value="">Selecciona una imagen</option>
                     </select>
-                    <div id="imagePreview"></div>
+                    <div class="image-preview-email" id="imagePreview"></div>
                 </div>
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn-save-emails">Guardar</button>
             </form>
         </div>
     </div>
 
     <!-- Modal para Subir Nueva Imagen -->
-    <div id="uploadImageModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeUploadImageModal()">&times;</span>
-            <h5>Subir Nueva Imagen</h5>
-            <form id="imageUploadForm" enctype="multipart/form-data">
-                <div>
-                    <label for="emailImageFile">Seleccionar Imagen</label>
-                    <input type="file" id="emailImageFile" name="imageFile" accept="image/*" required>
+    <div id="uploadImageModal" class="modal-emails">
+        <div class="modal-content-emails">
+            <span class="close-email" onclick="closeUploadImageModal()">&times;</span>
+            <h5 class="modal-title">Subir Nueva Imagen</h5>
+            <form class="email-form" id="imageUploadForm" enctype="multipart/form-data">
+                <div class="upload-image-container-email">
+                    <label class="form-label-email-upload" for="emailImageFile">Seleccionar Imagen</label>
+                    <input class="form-input-email" type="file" id="emailImageFile" name="imageFile" accept="image/*" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Subir</button>
+                <button type="submit" class="btn-upload-emails-submit">Subir</button>
             </form>
         </div>
     </div>
 
     <!-- Modal para Confirmar Eliminación -->
-    <div id="deleteModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeDeleteModal()">&times;</span>
-            <h5>Confirmar Eliminación</h5>
+    <div id="deleteModal" class="modal-emails">
+        <div class="modal-content-emails">
+            <span class="close-email" onclick="closeDeleteModal()">&times;</span>
+            <h5 class="modal-title">Confirmar Eliminación</h5>
             <p>¿Estás seguro de que deseas eliminar este email?</p>
             <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancelar</button>
             <button class="btn btn-danger" id="confirmDelete">Eliminar</button>
