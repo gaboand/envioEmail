@@ -1,0 +1,19 @@
+<body>
+
+<form action="/emails/edit/{{email.type}}" method="POST">
+    <div>
+        <label for="subject">Asunto:</label>
+        <input type="text" id="subject" name="subject" value="{{email.subject}}" required>
+    </div>
+    <div>
+        <label for="body">Cuerpo del correo:</label>
+        <textarea id="body" name="body" rows="10" required>{{email.body}}</textarea>
+    </div>
+    <div>
+        <label for="image">URL de la Imagen:</label>
+        <input type="text" id="image" name="image" value="{{email.image}}" required>
+    </div>
+    <button type="submit">Guardar Cambios</button>
+</form>
+
+</body>

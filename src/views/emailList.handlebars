@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Emails</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+</head>
+<body>
+    <div class="email-container">
+        <h1>Administrar Emails</h1>
+        <button class="btn btn-primary" onclick="openCreateModal()">Crear Nuevo Email</button>
+        <button class="btn btn-secondary" onclick="openUploadImageModal()">Subir Nueva Imagen</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each emails}}
+                <tr>
+                    <td>{{this.type}}</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="openEditModal('{{this._id}}')">Editar</button>
+                        <button class="btn btn-danger" onclick="openDeleteModal('{{this._id}}')">Borrar</button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal para Crear/Editar Email -->
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEmailModal()">&times;</span>
+            <h5 id="modalTitle">Crear Email</h5>
+            <form id="emailForm">
+                <div>
+                    <label for="emailType">Tipo</label>
+                    <input type="text" id="emailType" name="type" required>
+                </div>
+                <div>
+                    <label for="emailSubject">Asunto</label>
+                    <input type="text" id="emailSubject" name="subject" required>
+                </div>
+                <div>
+                    <label for="emailBody">Cuerpo del Email</label>
+                    <textarea id="emailBody" name="body" rows="10" required></textarea>
+                </div>
+                <div>
+                    <label for="existingImages">Seleccionar Imagen Existente (opcional)</label>
+                    <select id="existingImages" name="existingImage">
+                        <option value="">Selecciona una imagen</option>
+                    </select>
+                    <div id="imagePreview"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Subir Nueva Imagen -->
+    <div id="uploadImageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUploadImageModal()">&times;</span>
+            <h5>Subir Nueva Imagen</h5>
+            <form id="imageUploadForm" enctype="multipart/form-data">
+                <div>
+                    <label for="emailImageFile">Seleccionar Imagen</label>
+                    <input type="file" id="emailImageFile" name="imageFile" accept="image/*" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Subir</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Confirmar Eliminación -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDeleteModal()">&times;</span>
+            <h5>Confirmar Eliminación</h5>
+            <p>¿Estás seguro de que deseas eliminar este email?</p>
+            <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancelar</button>
+            <button class="btn btn-danger" id="confirmDelete">Eliminar</button>
+        </div>
+    </div>
+
+    <script src="/js/main.js"></script>
+    <script>
+        // Inicializar CKEditor
+        CKEDITOR.replace('emailBody', {
+            extraPlugins: 'image2',
+            filebrowserImageBrowseUrl: '/images/browse-images',
+            removeDialogTabs: 'link:upload;image:Upload'
+        });
+    </script>
+</body>
+</html>

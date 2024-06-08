@@ -1,11 +1,11 @@
 import express from "express";
 import { publicPath, viewsPath } from './utils.js';
 import dotenv from "dotenv";
-import MongoStore from "connect-mongo";
-import { sendFirstClaimEmail, sendSecondEmail, sendthirdEmail } from './controller/mail.controller.js';
 import mongoose from "mongoose";
 import { ClientModel } from './dao/models/clients.js';
 import { engine } from "express-handlebars";
+import emailRoutes from './routes/email.routes.js';
+import imageRoutes from './routes/image.routes.js';
 
 const app = express();
 dotenv.config();
@@ -24,6 +24,8 @@ app.get('/dashboard', (req, res) => {
     res.render('dashboard');
 });
 
+app.use('/emails', emailRoutes);
+app.use('/images', imageRoutes);
 
 app.post("/clients", async (req, res) => {
     const { nombre, apellido, email, usuario, deuda, vencimiento } = req.body;
@@ -46,7 +48,6 @@ app.get('/clients/:emailsSent', async (req, res) => {
         res.status(500).send('Error al obtener los clientes');
     }
 });
-
 
 app.post('/sendfirstclaimemail', async (req, res) => {
     const { to, usuario } = req.body;
@@ -87,8 +88,6 @@ app.post('/sendthirdemail', async (req, res) => {
     }
 });
 
-
-
 app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT}`)
 })
@@ -99,10 +98,10 @@ startMongoConnection()
   })
   .catch((error) => {
     console.error("Error al conectar a la base de datos:", error);
-  })
+  });
 
-  async function startMongoConnection() {
+async function startMongoConnection() {
     await mongoose.connect(DB_URL);
-  }
+}
 
-export default app
+export default app;

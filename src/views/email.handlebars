@@ -1,0 +1,9 @@
+<body>
+    <ul>
+    {{#each emails}}
+        <li>
+            <a href="/emails/edit/{{this.type}}">{{this.type}}</a>
+        </li>
+    {{/each}}
+    </ul>
+</body>
